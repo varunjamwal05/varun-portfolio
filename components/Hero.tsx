@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { MagneticButton } from "./MagneticButton";
@@ -228,7 +229,7 @@ export default function Hero() {
             <div className="hero-cta opacity-0">
               <MagneticButton 
                 as="a" 
-                href="#projects"
+                href="/#projects"
                 onMouseDown={(e: any) => e.preventDefault()}
                 onDragStart={(e: any) => e.preventDefault()}
                 className="group relative px-6 py-3 bg-white text-black text-[10px] md:text-xs uppercase tracking-[0.2em] font-bold rounded-full transition-all flex items-center gap-3 overflow-hidden select-none"

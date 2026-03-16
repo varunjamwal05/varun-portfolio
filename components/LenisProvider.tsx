@@ -25,6 +25,37 @@ export default function LenisProvider({
 
     lenis.on("scroll", ScrollTrigger.update);
 
+    // Synchronize with Hash/History
+    const handleHashChange = () => {
+      const hash = window.location.hash;
+      if (hash) {
+        const target = document.querySelector(hash) as HTMLElement;
+        if (target) {
+          lenis.scrollTo(target);
+        }
+      } else {
+        lenis.scrollTo(0);
+      }
+    };
+
+    const handleClick = (e: MouseEvent) => {
+      const target = e.target as HTMLElement;
+      const anchor = target.closest("a");
+      if (anchor && anchor.hash && anchor.origin === window.location.origin) {
+        const hash = anchor.hash;
+        const scrollTarget = document.querySelector(hash) as HTMLElement;
+        if (scrollTarget) {
+          e.preventDefault();
+          window.history.pushState(null, "", hash);
+          lenis.scrollTo(scrollTarget);
+        }
+      }
+    };
+
+    window.addEventListener("popstate", handleHashChange);
+    window.addEventListener("hashchange", handleHashChange);
+    window.addEventListener("click", handleClick);
+
     gsap.ticker.add((time) => {
       lenis.raf(time * 1000);
     });
@@ -33,6 +64,9 @@ export default function LenisProvider({
 
     return () => {
       lenis.destroy();
+      window.removeEventListener("popstate", handleHashChange);
+      window.removeEventListener("hashchange", handleHashChange);
+      window.removeEventListener("click", handleClick);
       gsap.ticker.remove((time) => lenis.raf(time * 1000));
     };
   }, []);

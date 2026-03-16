@@ -38,7 +38,8 @@ export default function Navbar() {
         ].map((item) => (
           <Link 
             key={item.id} 
-            href={`#${item.id}`} 
+            href={`/#${item.id}`} 
+            scroll={false}
             className="text-[10px] md:text-xs font-black uppercase tracking-widest text-white/40 hover:text-white hover:scale-110 transition-all duration-300 px-1 py-1"
           >
             {item.name}

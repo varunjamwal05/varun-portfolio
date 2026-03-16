@@ -12,8 +12,8 @@ const outfit = Outfit({ subsets: ["latin"], variable: "--font-outfit" });
 const bricolage = Bricolage_Grotesque({ subsets: ["latin"], variable: "--font-display" });
 
 export const metadata: Metadata = {
-  title: "Varun Jamwal | Frontend Developer",
-  description: "Portfolio of Varun Jamwal, a creative Frontend Developer crafting interactive web experiences.",
+  title: "Varun Jamwal",
+  description: "Portfolio of Varun Jamwal, a creative Full Stack Developer crafting interactive web experiences.",
 };
 
 export default function RootLayout({
