@@ -26,14 +26,14 @@ export const projects: Project[] = [
       { category: "Tools", skills: ["Git", "GitHub"] }
     ],
     githubLink: "https://github.com/varunjamwal05/inkvero",
-    liveDemo: "https://github.com/varunjamwal05/inkvero"
+    liveDemo: "https://inkvero.vercel.app/"
   },
   {
     id: "quick-gear",
     title: "Quick Gear",
     description: "A fully responsive full-stack product rental and management platform with role-based authentication and secure checkout.",
     techStack: ["PHP", "MySQL", "JavaScript", "HTML/CSS", "phpMyAdmin"],
-    githubLink: "https://github.com/varunjamwal05/quick-gear",
-    liveDemo: "https://github.com/varunjamwal05/quick-gear"
+    githubLink: "https://github.com/varunjamwal05",
+    liveDemo: "https://github.com/varunjamwal05"
   }
 ];
