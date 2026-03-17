@@ -3,20 +3,52 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
+import { motion, AnimatePresence } from "framer-motion";
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
+  const [visible, setVisible] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
+      const currentScrollY = window.scrollY;
+      
+      // Determine if scrolled enough to change appearances
+      setScrolled(currentScrollY > 50);
+
+      // Visibility logic: 
+      // 1. Always visible at the very top
+      if (currentScrollY < 10) {
+        setVisible(true);
+      } 
+      // 2. Hide when scrolling down, show when scrolling up
+      else if (currentScrollY > lastScrollY && currentScrollY > 150) {
+        setVisible(false);
+      } else if (currentScrollY < lastScrollY) {
+        setVisible(true);
+      }
+
+      setLastScrollY(currentScrollY);
     };
-    window.addEventListener("scroll", handleScroll);
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [lastScrollY]);
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 flex justify-center mt-6 px-4 pointer-events-none">
+    <motion.header 
+      initial={{ y: 0, opacity: 1 }}
+      animate={{ 
+        y: visible ? 0 : -100,
+        opacity: visible ? 1 : 0
+      }}
+      transition={{ 
+        duration: 0.5, 
+        ease: [0.22, 1, 0.36, 1] 
+      }}
+      className="fixed top-0 left-0 right-0 z-50 flex justify-center mt-6 px-4 pointer-events-none"
+    >
       <nav 
         className={cn(
           "pointer-events-auto flex items-center justify-center flex-wrap gap-x-4 gap-y-2 sm:gap-x-8 px-6 py-3 rounded-[2rem] transition-all duration-500",
@@ -46,6 +78,6 @@ export default function Navbar() {
           </Link>
         ))}
       </nav>
-    </header>
+    </motion.header>
   );
 }

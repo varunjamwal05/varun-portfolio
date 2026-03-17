@@ -244,7 +244,7 @@ export default function Hero() {
               <MagneticButton 
                 as="a" 
                 href="/resume.pdf"
-                target="_blank"
+                download="Varun_Jamwal_Resume.pdf"
                 onMouseDown={(e: any) => e.preventDefault()}
                 onDragStart={(e: any) => e.preventDefault()}
                 className="group relative px-6 py-3 bg-white text-black text-[10px] md:text-xs uppercase tracking-[0.2em] font-bold rounded-full transition-all flex items-center gap-3 overflow-hidden select-none"

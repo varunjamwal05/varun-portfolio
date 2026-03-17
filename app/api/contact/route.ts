@@ -5,6 +5,15 @@ export async function POST(req: Request) {
   try {
     const { name, email, message } = await req.json();
 
+    // Check if environment variables are set (critical for Vercel deployment)
+    if (!process.env.EMAIL_USER || !process.env.EMAIL_PASS || !process.env.RECEIVER_EMAIL) {
+      console.error('Missing environment variables: EMAIL_USER, EMAIL_PASS, or RECEIVER_EMAIL');
+      return NextResponse.json(
+        { message: 'Server configuration error. Please check environment variables.' },
+        { status: 500 }
+      );
+    }
+
     if (!name || !email || !message) {
       return NextResponse.json(
         { message: 'Name, email, and message are required.' },
