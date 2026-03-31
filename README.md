@@ -1,36 +1,59 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Minimal Luxury Developer Portfolio
 
-## Getting Started
+A premium, awwwards-winning style developer portfolio built with modern web technologies. Focuses on smooth animations, clean typography, and a cohesive "minimal luxury" aesthetic.
 
-First, run the development server:
+## 🌟 Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- **Next.js 16** - Built with the App Router, prioritizing server components and modern React 19 paradigms.
+- **Advanced Animations** - Powered by **Framer Motion** and **GSAP** for magnetic buttons, staggered reveals, and sophisticated scroll-triggered animations.
+- **Smooth Scrolling** - Integrated **Lenis** for a silky smooth, native-feeling scroll experience.
+- **Premium Design System** - Styled with **Tailwind CSS 4**, featuring glassmorphism, subtle glows, fine grid background textures, and high-contrast typography (Outfit font).
+- **Smart Navigation** - Auto-hiding responsive navbar that maintains a clean viewport while exploring the site.
+- **Working Contact Form** - Fully styled, premium-feeling contact form with **Nodemailer** integration.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 💻 Tech Stack
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- **Framework**: [Next.js](https://nextjs.org/) (React)
+- **Styling**: [Tailwind CSS](https://tailwindcss.com/)
+- **Animations**: [Framer Motion](https://www.framer.com/motion/) & [GSAP](https://gsap.com/)
+- **Scroll Engine**: [Lenis](https://lenis.studiofreight.com/)
+- **Typography**: [Outfit](https://fonts.google.com/specimen/Outfit) via Google Fonts
+- **Icons**: [React Icons](https://react-icons.github.io/react-icons/)
+- **Mail**: [Nodemailer](https://nodemailer.com/)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🚀 Getting Started
 
-## Learn More
+First, ensure you have Node.js 20+ installed.
 
-To learn more about Next.js, take a look at the following resources:
+1. **Clone the repository**
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+3. **Set up environment variables**
+   Create a `.env` file in the root directory and add your Nodemailer credentials:
+   ```env
+   EMAIL_USER=your_email@gmail.com
+   EMAIL_PASS=your_app_password
+   ```
 
-## Deploy on Vercel
+4. **Run the development server**
+   ```bash
+   npm run dev
+   ```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+5. **Open your browser**
+   Navigate to [http://localhost:3000](http://localhost:3000) to view the portfolio.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 📂 Project Structure
+
+- `app/` - Next.js App Router core (layouts, pages, API routes, global styles)
+- `components/` - Reusable UI sections and components (Hero, Projects, Skills, Contact)
+- `data/` - Static configuration and content arrays
+- `public/` - Static images, fonts, and assets
+
+## 🤝 Deployment
+
+This project is optimized for deployment on [Vercel](https://vercel.com/). Simply connect your GitHub repository to Vercel and ensure you add the environment variables in the project settings before building.
