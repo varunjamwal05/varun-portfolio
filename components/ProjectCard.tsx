@@ -12,45 +12,42 @@ export default function ProjectCard({ project, highlighted }: { project: Project
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!cardRef.current) return;
     const { left, top, width, height } = cardRef.current.getBoundingClientRect();
-    const x = (e.clientX - left - width / 2) / 60; // Further reduced rotation for subtle effect
-    const y = (e.clientY - top - height / 2) / 60;
-    cardRef.current.style.transform = `perspective(1200px) rotateY(${x}deg) rotateX(${-y}deg) scale3d(1.005, 1.005, 1.005)`;
+    const x = (e.clientX - left - width / 2) / 120;
+    const y = (e.clientY - top - height / 2) / 120;
+    cardRef.current.style.transform = `perspective(1200px) rotateY(${x}deg) rotateX(${-y}deg) scale3d(1.002, 1.002, 1.002)`;
   };
 
   const handleMouseLeave = () => {
     if (!cardRef.current) return;
     setHovered(false);
+    cardRef.current.style.transition = "transform 0.5s ease";
     cardRef.current.style.transform = `perspective(1200px) rotateY(0deg) rotateX(0deg) scale3d(1, 1, 1)`;
+  };
+
+  const handleMouseEnterCard = () => {
+    if (!cardRef.current) return;
+    setHovered(true);
+    cardRef.current.style.transition = "transform 0.1s ease";
   };
 
   return (
     <div
       ref={cardRef}
       onMouseMove={handleMouseMove}
-      onMouseEnter={() => setHovered(true)}
+      onMouseEnter={handleMouseEnterCard}
       onMouseLeave={handleMouseLeave}
-      className={`group relative flex flex-col justify-between p-5 md:p-7 rounded-[2rem] transition-all duration-500 ease-out border backdrop-blur-3xl overflow-hidden ${
-        highlighted 
-          ? "col-span-1 md:col-span-2 bg-gradient-to-br from-indigo-500/20 via-purple-500/10 to-transparent border-white/30 shadow-[0_0_50px_rgba(99,102,241,0.1)]" 
-          : "col-span-1 bg-gradient-to-br from-indigo-500/15 via-purple-500/5 to-transparent border-white/20 shadow-[0_0_30px_rgba(99,102,241,0.05)] hover:border-indigo-500/50 hover:shadow-[0_0_40px_rgba(99,102,241,0.15)]"
-      }`}
-      style={{ transformStyle: "preserve-3d" }}
+      className="group relative flex flex-col justify-between p-5 md:p-7 rounded-[2rem] transition-all duration-500 ease-out border backdrop-blur-3xl overflow-hidden bg-gradient-to-br from-indigo-500/20 via-purple-500/10 to-transparent border-white/30 shadow-[0_0_50px_rgba(99,102,241,0.1)] hover:border-indigo-500/50 hover:shadow-[0_0_60px_rgba(99,102,241,0.2)]"
+      style={{ transition: "transform 0.5s ease", isolation: "isolate" }}
     >
       <div 
         className={`absolute inset-0 bg-gradient-to-tr from-purple-500/5 to-blue-500/5 opacity-0 transition-opacity duration-700 ${hovered ? 'opacity-100' : ''}`}
-        style={{ transform: "translateZ(-10px)" }}
       />
       
-      <div className="relative z-10" style={{ transform: "translateZ(30px)" }}>
-        {highlighted && (
-          <span className="inline-block px-3 py-1 text-[0.6rem] font-bold uppercase tracking-[0.2em] bg-white text-black rounded-full mb-4 shadow-lg">
-            Featured Case Study
-          </span>
-        )}
-        <h3 className={`font-black tracking-tighter mb-1 ${highlighted ? "text-3xl md:text-5xl" : "text-2xl md:text-3xl"}`}>
+      <div className="relative z-10">
+        <h3 className="font-black tracking-tighter mb-1 text-3xl md:text-5xl">
           {project.title}
         </h3>
-        <p className={`text-white/80 mb-3 leading-snug max-w-2xl font-medium tracking-tight ${highlighted ? "text-base md:text-lg" : "text-sm md:text-base"}`}>
+        <p className="text-white/80 mb-3 leading-snug max-w-2xl font-medium tracking-tight text-base md:text-lg">
           {project.description}
         </p>
         {project.groupedTechStack ? (
@@ -85,7 +82,7 @@ export default function ProjectCard({ project, highlighted }: { project: Project
         )}
       </div>
 
-      <div className="relative z-10 flex items-center gap-5 mt-auto pt-4 border-t border-white/10" style={{ transform: "translateZ(30px)" }}>
+      <div className="relative z-10 flex items-center gap-5 mt-auto pt-4 border-t border-white/10">
         <MagneticButton
           as="a"
           href={project.githubLink}
