@@ -26,7 +26,7 @@ export const projects: Project[] = [
       { category: "Tools", skills: ["Git", "GitHub"] }
     ],
     githubLink: "https://github.com/varunjamwal05/HiddenEdge",
-    liveDemo: "https://github.com/varunjamwal05/HiddenEdge"
+    liveDemo: "https://hidden-edge.vercel.app/"
   },
   {
     id: "inkvero",
